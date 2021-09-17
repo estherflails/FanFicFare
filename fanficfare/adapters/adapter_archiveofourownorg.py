@@ -207,6 +207,8 @@ class ArchiveOfOurOwnOrgAdapter(BaseSiteAdapter):
                 # create bookmark form uses different url
                 self.story.setMetadata('bookmarked',
                                        None != metasoup.find('form',action=re.compile(r'^/bookmarks/')))
+                self.story.setMetadata('subscribed',
+                                       None != metasoup.find('form',id=re.compile(r'^edit_subscription_')))
                 self.story.extendList('bookmarktags',
                                       metasoup.find('input',id='bookmark_tag_string')['value'].split(', '))
                 self.story.setMetadata('bookmarkprivate',
